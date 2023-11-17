@@ -1,0 +1,21 @@
+apiVersion: k0sctl.k0sproject.io/v1beta1
+kind: Cluster
+metadata:
+  name: host-cluster
+spec:
+  hosts:
+  - ssh:
+      address: 78.47.223.201
+      user: root
+    role: controller+worker
+    installFlags:
+      - --enable-worker
+      - --no-taints
+  k0s:
+    version: v1.28.3+k0s.0
+    dynamicConfig: false
+    config:
+      spec:
+        extensions:
+          storage:
+            type: openebs_local_storage
